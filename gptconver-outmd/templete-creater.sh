@@ -11,6 +11,7 @@ templete ()
     
     creater ()
     {
+        : creater 13 16 ':%%%%%%%:'
         : creater 3 ':%%%%%%%:'
         : creater 3
         : creater ':%%%%%%%:' 3
@@ -19,19 +20,46 @@ templete ()
         
         :;
         
-        local _len _rplc ;
+        local _start _len _rplc ;
+        
+        {
+            _params ()
+            {
+                : creater 13 16 ':%%%%%%%:'
+                
+                unset start && local start="$1" && shift 1 &&
+                unset len && local len="$1" && shift 1 &&
+                unset rplc && local rplc="$1" && shift 1 &&
+                
+                2>/dev/null test "$start" -eq "$start" &&
+                2>/dev/null test "$len" -eq "$len" &&
+                2>/dev/null test "$rplc" == "$rplc" &&
+                
+                _start="$start" &&
+                _len="$len" &&
+                _rplc="$rplc" &&
+                
+                :;
+                
+            } &&
+            _params "$@" &&
+            
+        :; } ||
         
         {
             _params ()
             {
                 : creater 3 ':%%%%%%%:'
                 
+                unset start && local start=0 &&
                 unset len && local len="$1" && shift 1 &&
                 unset rplc && local rplc="$1" && shift 1 &&
                 
+                2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
                 2>/dev/null test "$rplc" == "$rplc" &&
                 
+                _start="$start" &&
                 _len="$len" &&
                 _rplc="$rplc" &&
                 
@@ -47,12 +75,15 @@ templete ()
             {
                 : creater 3
                 
+                unset start && local start=0 &&
                 unset len && local len="$1" && shift 1 &&
                 unset rplc && local rplc=':%%%%%%%:' &&
                 
+                2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
                 2>/dev/null test "$rplc" == "$rplc" &&
                 
+                _start="$start" &&
                 _len="$len" &&
                 _rplc="$rplc" &&
                 
@@ -70,11 +101,14 @@ templete ()
                 : creater ':%%%%%%%:' 3
                 
                 unset rplc && local rplc="$1" && shift 1 &&
+                unset start && local start=0 &&
                 unset len && local len="$1" && shift 1 &&
                 
+                2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
                 2>/dev/null test "$rplc" == "$rplc" &&
                 
+                _start="$start" &&
                 _len="$len" &&
                 _rplc="$rplc" &&
                 
@@ -92,11 +126,14 @@ templete ()
                 : creater ':%%%%%%%:'
                 
                 unset rplc && local rplc="$1" && shift 1 &&
+                unset start && local start=0 &&
                 unset len && local len=3 &&
                 
+                2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
                 2>/dev/null test "$rplc" == "$rplc" &&
                 
+                _start="$start" &&
                 _len="$len" &&
                 _rplc="$rplc" &&
                 
@@ -113,12 +150,15 @@ templete ()
             {
                 : creater
                 
+                unset start && local start=0 &&
                 unset len && local len=3 &&
                 unset rplc && local rplc=':%%%%%%%:' &&
                 
+                2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
                 2>/dev/null test "$rplc" == "$rplc" &&
                 
+                _start="$start" &&
                 _len="$len" &&
                 _rplc="$rplc" &&
                 
@@ -131,6 +171,7 @@ templete ()
         
         { 1>&2 echo args err 🤒 ; return 9 ; } ;
         
+        local start="$_start" &&
         local len="$_len" &&
         local rplc="$_rplc" &&
         
@@ -156,7 +197,7 @@ templete ()
 '"$rplc"'' &&
         
         
-        seq -- 0 1 "$len" |
+        seq -- "$start" 1 "$len" |
             
             xargs -I '{'"$I_NUM"'}' -- echo "$per" &&
         
@@ -170,6 +211,7 @@ templete ()
     "$@" &&
     
     :;
+    
 } &&
 
 
