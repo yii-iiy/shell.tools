@@ -2,6 +2,7 @@ chatgpt 对话记录导出方案
 
 ### 模板
 
+调用 [<kbd>./templete-creater.sh</kbd>](./templete-creater.sh) ，譬如 `./templete-creater.sh :%%%%%%%: 1` 即可生成如下模板：
 
 ~~~~~
 
