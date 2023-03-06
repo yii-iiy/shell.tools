@@ -1,4 +1,4 @@
-#! /usr/bin/env awk -f
+#! /usr/bin/env gawk -f
 
 {
     if (1 == NR && 0 == NF) {print $0}
