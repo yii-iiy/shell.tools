@@ -11,7 +11,8 @@ templete ()
     
     creater ()
     {
-        : creater 13 16 ':%%%%%%%:'
+        : creater 0 3 ':%%%%%%%:'
+        : creater 0 3
         : creater 3 ':%%%%%%%:'
         : creater 3
         : creater ':%%%%%%%:' 3
@@ -22,14 +23,91 @@ templete ()
         
         local _start _len _rplc ;
         
+        
         {
             _params ()
             {
-                : creater 13 16 ':%%%%%%%:'
+                : creater 0 3 ':%%%%%%%:'
+                : creater 2 4 xxxxx
                 
-                unset start && local start="$1" && shift 1 &&
-                unset len && local len="$1" && shift 1 &&
-                unset rplc && local rplc="$1" && shift 1 &&
+                unset _start start && local start="$1" && shift 1 &&
+                unset _len len && local len="$1" && shift 1 &&
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
+                
+                2>/dev/null test "$start" -eq "$start" &&
+                2>/dev/null test "$len" -eq "$len" &&
+                2>/dev/null test "$rplc" == "$rplc" &&
+                
+                _start="$start" &&
+                _len="$len" &&
+                _rplc="$rplc" &&
+                
+                :;
+                
+            } &&
+            _params "$@" &&
+            
+        :; } ||
+        
+        {
+            _params ()
+            {
+                : creater ':%%%%%%%:' 0 3
+                : creater xxxx 2 4
+                
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
+                unset _start start && local start="$1" && shift 1 &&
+                unset _len len && local len="$1" && shift 1 &&
+                
+                2>/dev/null test "$start" -eq "$start" &&
+                2>/dev/null test "$len" -eq "$len" &&
+                2>/dev/null test "$rplc" == "$rplc" &&
+                
+                _start="$start" &&
+                _len="$len" &&
+                _rplc="$rplc" &&
+                
+                :;
+                
+            } &&
+            _params "$@" &&
+            
+        :; } ||
+        
+        {
+            _params ()
+            {
+                : creater 0 ':%%%%%%%:' 3
+                : creater 2 xxxx 4
+                
+                unset _start start && local start="$1" && shift 1 &&
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
+                unset _len len && local len="$1" && shift 1 &&
+                
+                2>/dev/null test "$start" -eq "$start" &&
+                2>/dev/null test "$len" -eq "$len" &&
+                2>/dev/null test "$rplc" == "$rplc" &&
+                
+                _start="$start" &&
+                _len="$len" &&
+                _rplc="$rplc" &&
+                
+                :;
+                
+            } &&
+            _params "$@" &&
+            
+        :; } ||
+        
+        {
+            _params ()
+            {
+                : creater 0 3
+                : creater 2 4
+                
+                unset _start start && local start="$1" && shift 1 &&
+                unset _len len && local len="$1" && shift 1 &&
+                unset _rplc rplc && local rplc=':%%%%%%%:' &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
@@ -50,10 +128,11 @@ templete ()
             _params ()
             {
                 : creater 3 ':%%%%%%%:'
+                : creater 1 ':%%%%%%%:'
                 
-                unset start && local start=0 &&
-                unset len && local len="$1" && shift 1 &&
-                unset rplc && local rplc="$1" && shift 1 &&
+                unset _start start && local start=0 &&
+                unset _len len && local len="$1" && shift 1 &&
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
@@ -74,10 +153,11 @@ templete ()
             _params ()
             {
                 : creater 3
+                : creater 5
                 
-                unset start && local start=0 &&
-                unset len && local len="$1" && shift 1 &&
-                unset rplc && local rplc=':%%%%%%%:' &&
+                unset _start start && local start=0 &&
+                unset _len len && local len="$1" && shift 1 &&
+                unset _rplc rplc && local rplc=':%%%%%%%:' &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
@@ -99,10 +179,11 @@ templete ()
             _params ()
             {
                 : creater ':%%%%%%%:' 3
+                : creater xxx 5
                 
-                unset rplc && local rplc="$1" && shift 1 &&
-                unset start && local start=0 &&
-                unset len && local len="$1" && shift 1 &&
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
+                unset _start start && local start=0 &&
+                unset _len len && local len="$1" && shift 1 &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
@@ -124,10 +205,11 @@ templete ()
             _params ()
             {
                 : creater ':%%%%%%%:'
+                : creater xxxx
                 
-                unset rplc && local rplc="$1" && shift 1 &&
-                unset start && local start=0 &&
-                unset len && local len=3 &&
+                unset _rplc rplc && local rplc="$1" && shift 1 &&
+                unset _start start && local start=0 &&
+                unset _len len && local len=3 &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
@@ -150,9 +232,9 @@ templete ()
             {
                 : creater
                 
-                unset start && local start=0 &&
-                unset len && local len=3 &&
-                unset rplc && local rplc=':%%%%%%%:' &&
+                unset _start start && local start=0 &&
+                unset _len len && local len=3 &&
+                unset _rplc rplc && local rplc=':%%%%%%%:' &&
                 
                 2>/dev/null test "$start" -eq "$start" &&
                 2>/dev/null test "$len" -eq "$len" &&
