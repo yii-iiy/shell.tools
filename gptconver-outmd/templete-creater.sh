@@ -275,7 +275,7 @@ templete ()
             echo "$rplc" &&
             echo '' &&
             echo "$rplc" &&
-            echo "$rplc"'### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> chatgpt: ' &&
+            echo "$rplc"'#### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> chatgpt: ' &&
             echo "$rplc" &&
             echo '' &&
             echo "$rplc" &&
