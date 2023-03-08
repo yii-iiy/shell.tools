@@ -268,20 +268,24 @@ templete ()
         : body :
         
         
-        local per='
-'"$rplc"'### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> asker: 
-'"$rplc"'
-
-'"$rplc"'
-'"$rplc"'#### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> chatgpt: 
-'"$rplc"'
-
-'"$rplc"'' &&
+        local per="$(
+            
+            echo '' &&
+            echo "$rplc"'### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> asker: ' &&
+            echo "$rplc" &&
+            echo '' &&
+            echo "$rplc" &&
+            echo "$rplc"'### <sup><kbd><var>({'"$I_NUM"'}) </var></kbd></sup> chatgpt: ' &&
+            echo "$rplc" &&
+            echo '' &&
+            echo "$rplc" &&
+            
+            : )" &&
         
         
         seq -- "$start" 1 "$len" |
             
-            xargs -I '{'"$I_NUM"'}' -- echo "$per" &&
+            xargs -I '{'"$I_NUM"'}' -- echo -n "$per" &&
         
         
         :;
